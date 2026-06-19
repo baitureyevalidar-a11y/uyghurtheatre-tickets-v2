@@ -1,0 +1,175 @@
+{
+  "common": {
+    "welcome": "Уйгурский театр музыкальной комедии",
+    "tagline": "Билеты онлайн",
+    "siteName": "Уйғур театры",
+    "priceFrom": "от {price}",
+    "buy": "Купить"
+  },
+  "header": {
+    "logoAlt": "Уйгурский театр",
+    "buyTicket": "Купить билет",
+    "cart": "Корзина"
+  },
+  "home": {
+    "heroEyebrow": "Премьера сезона",
+    "premiereBadge": "Премьера",
+    "heroBuy": "Купить билет",
+    "heroFrom": "Билеты от",
+    "dateLabel": "Дата",
+    "durationLabel": "Длительность",
+    "durationValue": "{hours} ч",
+    "withIntermission": "с антрактом",
+    "scarcity": "Осталось {count} мест — менее 30% зала",
+    "afishaEyebrow": "Афиша",
+    "afishaTitle": "Афиша на этот",
+    "afishaTitleAccent": "месяц",
+    "heroComingSoon": "Скоро новые постановки"
+  },
+  "catalog": {
+    "empty": "Скоро объявим новые спектакли"
+  },
+  "event": {
+    "upcomingShows": "Ближайшие показы",
+    "noUpcomingShows": "Ближайшие показы пока не объявлены",
+    "durationMin": "{count} мин",
+    "detail": {
+      "cast": "В ролях",
+      "duration": "Продолжительность",
+      "director": "Режиссёр",
+      "producingTheater": "Театр постановщик",
+      "producingTheaterValue": "Уйгурский театр",
+      "ageRating": "Возрастное ограничение",
+      "eyebrow": "АФИША",
+      "schedule": "Расписание показов",
+      "about": "О событии",
+      "buyFrom": "Купить билет от {price}",
+      "noShows": "Показов пока нет",
+      "comingSoon": "Скоро в продаже",
+      "hoursShort": "ч",
+      "minutesShort": "мин",
+      "empty": "—"
+    }
+  },
+  "seats": {
+    "back": "← Назад к событию",
+    "stage": "СЦЕНА",
+    "selectNone": "Выберите место на схеме",
+    "countSeats": "{count, plural, one {# место} few {# места} other {# мест}}",
+    "continue": "Продолжить",
+    "creatingBooking": "Создаём бронь...",
+    "errorSeatTaken": "Одно из мест только что заняли. Обновите страницу.",
+    "errorMaxSeats": "Максимум 10 мест за раз",
+    "errorShowUnavailable": "Показ недоступен",
+    "errorInvalidSeat": "Неверное место",
+    "backToHall": "Вернуться к залу",
+    "rowLabel": "Ряд",
+    "seatLabel": "Место",
+    "continueWithTotal": "Продолжить — {total}"
+  },
+  "checkout": {
+    "title": "Оформление заказа",
+    "yourOrder": "Ваш заказ",
+    "total": "Итого",
+    "holdTimer": "Места держатся ещё {time}",
+    "holdExpired": "Время брони истекло",
+    "name": "Имя",
+    "namePlaceholder": "Иван Иванов",
+    "phone": "Телефон",
+    "phoneHelper": "Например, +77001234567",
+    "email": "Email",
+    "emailHelper": "Билеты придут на почту (необязательно)",
+    "paymentMethod": "Способ оплаты",
+    "kaspi": "Kaspi Pay",
+    "epay": "Epay.kz",
+    "payButton": "Оплатить — {total}",
+    "processing": "Обрабатываем...",
+    "validation": {
+      "nameRequired": "Введите имя",
+      "phoneFormat": "Формат: +77001234567",
+      "emailInvalid": "Неверный email"
+    },
+    "errors": {
+      "expired": "Время брони истекло. Выберите места заново.",
+      "alreadyProcessed": "Эта бронь уже обработана.",
+      "wrongSession": "Эта бронь принадлежит другой сессии.",
+      "noHeldSeats": "Места не удержаны для этой брони",
+      "generic": "Не удалось завершить оплату. Попробуйте снова."
+    },
+    "expiredPage": {
+      "title": "Время брони истекло",
+      "description": "Выберите места заново — за вами их больше не держим.",
+      "backToSeats": "К выбору мест"
+    },
+    "wrongSessionPage": {
+      "title": "Эта бронь не для этой сессии",
+      "description": "Видимо, вы открыли ссылку с другого устройства или после очистки cookies.",
+      "backHome": "На главную"
+    },
+    "success": {
+      "title": "Билеты куплены",
+      "subtitle": "Сохраните QR-коды или приходите с ними на показ.",
+      "downloadPdf": "Скачать PDF",
+      "sendEmail": "Отправить на email",
+      "ticketCode": "Код билета",
+      "backHome": "На главную",
+      "rowSeat": "Ряд {row}, место {seat}"
+    }
+  },
+  "notFound": {
+    "event": {
+      "title": "Событие не найдено",
+      "description": "Возможно, оно было отменено или ссылка устарела",
+      "backHome": "Вернуться в афишу"
+    },
+    "show": {
+      "title": "Показ не найден",
+      "description": "Продажи закрыты или показ отменён"
+    },
+    "booking": {
+      "title": "Бронь не найдена",
+      "description": "Возможно, ссылка устарела или бронь была отменена",
+      "backHome": "Вернуться в афишу"
+    }
+  },
+  "footer": {
+    "shortName": "Уйгурский театр",
+    "since": "Алматы · с 1934 года",
+    "brand": {
+      "name": "Уйгурский театр",
+      "tagline": "Музыкальная комедия · Алматы"
+    },
+    "contactsLabel": "Контакты",
+    "phoneLabel": "Телефон",
+    "address": "пр. Абылай хана, 58, Алматы",
+    "email": "uyghurtheatrekz@gmail.com",
+    "contacts": {
+      "boxOffice": "Касса",
+      "phone": "Телефон",
+      "email": "Email",
+      "address": "Адрес",
+      "addressValue": "г. Алматы, ул. Наурызбай батыра, 83"
+    },
+    "followUs": "Мы в соцсетях",
+    "officialName": "Республиканский государственный академический уйгурский театр музыкальной комедии им. К. Кужамьярова",
+    "rights": "Все права защищены",
+    "contact": "Алматы, Казахстан",
+    "copyright": "© 2026 Государственный республиканский уйгурский театр музыкальной комедии"
+  },
+  "cart": {
+    "title": "Корзина",
+    "activeBooking": "Активная бронь",
+    "continuePayment": "Продолжить оплату",
+    "myTickets": "Мои билеты",
+    "upcoming": "Предстоящие",
+    "past": "Прошедшие",
+    "showPast": "Показать прошедшие ({count})",
+    "hidePast": "Скрыть прошедшие",
+    "emptyTitle": "Вы ещё ничего не купили",
+    "emptyBody": "Откройте афишу — там много интересных постановок.",
+    "toAfisha": "Перейти к афише",
+    "seats": "Места",
+    "total": "Итого",
+    "rowSeat": "Ряд {row}, место {seat}"
+  }
+}

@@ -1,0 +1,586 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Brand tokens — mirrors lib/design-tokens.ts. Static, do not theme. */
+@theme {
+  /* ── Warm "pomegranate/garnet" palette (primary brand) ──
+     Prefer these honest names in new code. Garnet (гранат) is the cultural
+     hero accent; greens are deliberately avoided. */
+  --color-paper: #faf6f0;     /* page / soft surface */
+  --color-paper-2: #f3ebdf;   /* alt section bg */
+  --color-ink: #241f1c;       /* primary text on light */
+  --color-ink-soft: #5c534c;  /* secondary text on light */
+  --color-garnet: #9c2f2a;    /* PRIMARY accent — all CTAs, links */
+  --color-garnet-dark: #7d2630; /* CTA hover, deep bg */
+  --color-ember: #c1572f;     /* scarcity gradient stop */
+  --color-gold: #bf8f3f;      /* muted gold accent */
+  --color-gold-soft: #d8b878; /* eyebrows / numerals on dark */
+  --color-night: #1a1410;     /* dark sections (hero, footer) */
+  --color-night-2: #241c16;   /* alt dark */
+  --color-line: rgba(36, 31, 28, 0.12); /* hairline borders on light */
+
+  /* ── Fonts (public redesign). serif/arabic added; sans kept as-is so the
+     shared @theme-inline mapping keeps resolving per-layout — admin sets the
+     same var names to its own families and must keep working. ── */
+  --font-serif: var(--font-display), "PT Serif", Georgia, serif;
+  --font-arabic: var(--font-noto-arabic), "Noto Naskh Arabic", "Noto Sans Arabic", serif;
+
+  /* ── Named shadow tokens (from injectTheme()) ── */
+  --shadow-cta: 0 6px 20px -6px rgba(156, 47, 42, 0.55);
+  --shadow-cta-hover: 0 10px 28px -8px rgba(156, 47, 42, 0.6);
+  --shadow-card: 0 18px 40px -22px rgba(36, 31, 28, 0.45);
+  --shadow-card-hover: 0 28px 50px -22px rgba(36, 31, 28, 0.55);
+
+  /* ── Legacy brand-* aliases, repurposed to the garnet palette ──
+     Existing components reference bg-brand-teal etc.; these keep the whole
+     site visually consistent without renaming every consumer. */
+  --color-brand-teal: #9c2f2a;        /* → garnet */
+  --color-brand-teal-dark: #7d2630;   /* → garnet-dark (header/footer bg) */
+  --color-brand-teal-light: #b4392f;  /* → garnet hover */
+  --color-brand-gold: #bf8f3f;
+  --color-brand-gold-dark: #a87d36;
+  --color-brand-beige: #f3ebdf;       /* → paper-2 */
+  --color-brand-beige-dark: #e7ddce;
+
+  /* Provisional garnet-palette tiers — tuned for cream visibility in D3. */
+  --color-tier-premium: #9c2f2a;  /* garnet */
+  --color-tier-standard: #bf8f3f; /* gold */
+  --color-tier-economy: #5c534c;  /* ink-soft */
+  --color-tier-balcony: #c1572f;  /* ember */
+  --color-tier-sold: #d4cabb;     /* muted warm gray on cream */
+  --color-tier-selected: #7d2630; /* garnet-dark */
+  --color-tier-hover: #bf8f3f;    /* gold */
+
+  /* Semantic neutrals — mirrors lib/design-tokens.ts colors.{text,border,bg} */
+  --color-text-primary: #171717;
+  --color-text-secondary: #525252;
+  --color-text-tertiary: #737373;
+  --color-text-inverse: #FFFFFF;
+
+  --color-border-subtle: #F5F5F5;
+  --color-border-default: #E5E5E5;
+  --color-border-strong: #D4D4D4;
+
+  --color-bg-surface: #FFFFFF;
+  --color-bg-muted: #f3ebdf;
+  --color-bg-elevated: #FAFAFA;
+
+  /* State colors — mirrors lib/design-tokens.ts colors.state */
+  --color-state-success: #16A34A;
+  --color-state-success-bg: #F0FDF4;
+  --color-state-warning: #EAB308;
+  --color-state-warning-bg: #FEFCE8;
+  --color-state-error: #DC2626;
+  --color-state-error-bg: #FEF2F2;
+  --color-state-info: #0891B2;
+  --color-state-info-bg: #ECFEFF;
+}
+
+/* Hall map seat states — applied to <circle> elements in HallMap */
+.hall-seat-available {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: fill 150ms ease, transform 150ms ease;
+}
+.hall-seat-available:hover {
+  fill: var(--color-tier-hover);
+  transform: scale(1.15);
+}
+.hall-seat-selected {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(1.15);
+  transition: fill 150ms ease, transform 150ms ease;
+}
+.hall-seat-sold {
+  cursor: not-allowed;
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ============================================================
+   PUBLIC REDESIGN — ported from design-source/files/01-theme.js
+   (injectTheme()). The `.ut-` prefix is dropped everywhere. These short
+   --name aliases let the ported utilities reference the brand @theme tokens.
+   Consumed only by public-side components; admin does not use these classes.
+   ============================================================ */
+
+:root {
+  --paper: var(--color-paper);
+  --paper2: var(--color-paper-2);
+  --ink: var(--color-ink);
+  --inkSoft: var(--color-ink-soft);
+  --garnet: var(--color-garnet);
+  --garnetDk: var(--color-garnet-dark);
+  --ember: var(--color-ember);
+  --gold: var(--color-gold);
+  --goldSoft: var(--color-gold-soft);
+  --night: var(--color-night);
+  --night2: var(--color-night-2);
+  --line: var(--color-line);
+  --serif: var(--font-serif);
+}
+
+/* Serif / editorial type */
+.serif {
+  font-family: var(--font-serif);
+}
+[dir="rtl"] .serif {
+  font-family: var(--font-arabic);
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+[dir="rtl"] .eyebrow {
+  letter-spacing: 0.04em;
+}
+
+/* Editorial italic accent — same serif, italic, inherits weight/colour.
+   Arabic script doesn't italicize, so RTL gets a gold colour treatment. */
+.em {
+  font-style: italic;
+  font-weight: inherit;
+  color: inherit;
+}
+[dir="rtl"] .em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+/* Big editorial numerals */
+.bignum {
+  font-family: var(--serif), "PT Serif", serif;
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.count {
+  font-variant-numeric: tabular-nums;
+}
+.cardnum {
+  font-family: var(--serif), "PT Serif", serif;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--garnet);
+  opacity: 0.16;
+}
+.faqnum {
+  font-family: var(--serif), "PT Serif", serif;
+  font-weight: 700;
+  color: var(--garnet);
+  line-height: 1;
+}
+
+/* CTA buttons */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--garnet);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  transition:
+    transform 0.12s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+  box-shadow: var(--shadow-cta);
+}
+.cta:hover {
+  background: var(--garnetDk);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-cta-hover);
+}
+.cta:active {
+  transform: translateY(0);
+}
+.cta:disabled {
+  box-shadow: none;
+  cursor: default;
+}
+.cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 600;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+.cta-ghost:hover {
+  border-color: var(--garnet);
+  background: rgba(156, 47, 42, 0.04);
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+.card-int:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: rgba(156, 47, 42, 0.25);
+}
+
+/* Placeholder media */
+.ph {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #efe5d6 0%, #e7d8c4 100%);
+}
+.ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background:
+    radial-gradient(120% 80% at 70% 10%, rgba(156, 47, 42, 0.16), transparent 60%),
+    radial-gradient(90% 70% at 10% 90%, rgba(191, 143, 63, 0.18), transparent 55%);
+}
+.ph-label {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(36, 31, 28, 0.42);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-align: center;
+  padding: 16px;
+}
+[dir="rtl"] .ph-label {
+  letter-spacing: 0.02em;
+}
+
+/* Pomegranate motif line */
+.rule {
+  height: 2px;
+  width: 46px;
+  background: linear-gradient(90deg, var(--garnet), var(--gold));
+  border-radius: 2px;
+}
+
+/* Pulse for urgency dot */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  flex: none;
+}
+.dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #fff;
+  animation: pulse 1.8s ease-out infinite;
+}
+
+/* Seat hover (full rework in D3) */
+.seat {
+  cursor: pointer;
+  transition: transform 0.08s ease;
+}
+.seat:hover {
+  transform: scale(1.18);
+}
+.seat-sold {
+  cursor: not-allowed;
+}
+
+/* Scroll containers */
+.scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: rgba(36, 31, 28, 0.18);
+  border-radius: 4px;
+}
+
+/* FAQ */
+.faq-q {
+  transition: background 0.15s;
+}
+.faq-q:hover {
+  background: rgba(156, 47, 42, 0.03);
+}
+.faqrow {
+  transition: background 0.15s;
+}
+.faqrow:hover .faq-qtext {
+  color: var(--garnet);
+}
+
+/* Fade-in */
+.fade-in {
+  animation: fade 0.35s ease both;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Video placeholder shimmer (dark) */
+.video {
+  background: linear-gradient(115deg, #221813 0%, #14100c 55%, #1d1510 100%);
+  position: relative;
+  overflow: hidden;
+}
+.video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(80% 60% at 30% 20%, rgba(156, 47, 42, 0.28), transparent 60%),
+    radial-gradient(70% 60% at 85% 90%, rgba(191, 143, 63, 0.22), transparent 55%);
+}
+.video-label {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+[dir="rtl"] .video-label {
+  letter-spacing: 0.02em;
+}
+
+/* ── Seat-selection redesign: clickable zone shapes (overview) ── */
+.zone-shape {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.15s ease;
+}
+.zone-shape .zone-bg {
+  transition:
+    fill 0.15s ease,
+    stroke 0.15s ease,
+    stroke-width 0.15s ease;
+}
+.zone-shape:hover {
+  transform: scale(1.02);
+}
+.zone-shape:hover .zone-bg {
+  stroke: var(--garnet);
+  stroke-width: 2;
+}
+
+/* ── Seat-selection redesign: individual seats (zone detail) ── */
+.zseat {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 0.12s ease,
+    stroke 0.12s ease,
+    stroke-width 0.12s ease;
+}
+.zseat-available {
+  cursor: pointer;
+}
+.zseat-available:hover {
+  transform: scale(1.1);
+  stroke: var(--gold);
+  stroke-width: 2;
+}
+.zseat-selected {
+  transform: scale(1.15);
+}
+.zseat-sold {
+  cursor: not-allowed;
+}
+
+/* Respect reduced motion — scoped to the redesign's animated classes so the
+   admin panel's own transitions are unaffected. */
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .card,
+  .card-int,
+  .seat,
+  .zone-shape,
+  .zseat,
+  .fade-in,
+  .dot::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}

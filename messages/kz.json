@@ -1,0 +1,176 @@
+{
+  "_translatorNote": "TODO: KZ translations are placeholder — review with native speaker before production.",
+  "common": {
+    "welcome": "Ұйғыр музыкалық комедия театры",
+    "tagline": "Билеттер онлайн",
+    "siteName": "Ұйғыр театры",
+    "priceFrom": "{price}-ден",
+    "buy": "Сатып алу"
+  },
+  "header": {
+    "logoAlt": "Ұйғыр театры",
+    "buyTicket": "Билет сатып алу",
+    "cart": "Себет"
+  },
+  "home": {
+    "heroEyebrow": "Маусым премьерасы",
+    "premiereBadge": "Премьера",
+    "heroBuy": "Билет сатып алу",
+    "heroFrom": "Билеттер",
+    "dateLabel": "Күні",
+    "durationLabel": "Ұзақтығы",
+    "durationValue": "{hours} сағ",
+    "withIntermission": "антрактпен",
+    "scarcity": "{count} орын қалды — залдың 30%-дан азы",
+    "afishaEyebrow": "Афиша",
+    "afishaTitle": "Осы айдағы",
+    "afishaTitleAccent": "афиша",
+    "heroComingSoon": "Жақында жаңа қойылымдар"
+  },
+  "catalog": {
+    "empty": "Жақында жаңа спектакльдер жарияланады"
+  },
+  "event": {
+    "upcomingShows": "Жақын күндердегі көрсетілімдер",
+    "noUpcomingShows": "Жақын күндерде көрсетілім жоспарланбаған",
+    "durationMin": "{count} мин",
+    "detail": {
+      "cast": "Рөлдерде",
+      "duration": "Ұзақтығы",
+      "director": "Режиссёр",
+      "producingTheater": "Қойылым театры",
+      "producingTheaterValue": "Ұйғыр театры",
+      "ageRating": "Жас шектеуі",
+      "eyebrow": "АФИША",
+      "schedule": "Қойылым кестесі",
+      "about": "Іс-шара туралы",
+      "buyFrom": "Билет сатып алу — {price} бастап",
+      "noShows": "Әзірге қойылым жоқ",
+      "comingSoon": "Жақында сатылымда",
+      "hoursShort": "сағ",
+      "minutesShort": "мин",
+      "empty": "—"
+    }
+  },
+  "seats": {
+    "back": "← Оқиғаға қайту",
+    "stage": "САХНА",
+    "selectNone": "Сызбадан орын таңдаңыз",
+    "countSeats": "{count, plural, one {# орын} other {# орын}}",
+    "continue": "Жалғастыру",
+    "creatingBooking": "Брондау жасалуда...",
+    "errorSeatTaken": "Бұл орынды жаңа ғана алып үлгерді. Бетті жаңартыңыз.",
+    "errorMaxSeats": "Бір рет — 10 орынға дейін",
+    "errorShowUnavailable": "Көрсетілім қолжетімсіз",
+    "errorInvalidSeat": "Орын дұрыс емес",
+    "backToHall": "Залға оралу",
+    "rowLabel": "Қатар",
+    "seatLabel": "Орын",
+    "continueWithTotal": "Жалғастыру — {total}"
+  },
+  "checkout": {
+    "title": "Тапсырысты ресімдеу",
+    "yourOrder": "Сіздің тапсырысыңыз",
+    "total": "Барлығы",
+    "holdTimer": "Орындар әлі {time} ұсталады",
+    "holdExpired": "Брондау уақыты бітті",
+    "name": "Аты",
+    "namePlaceholder": "Иван Иванов",
+    "phone": "Телефон",
+    "phoneHelper": "Мысалы, +77001234567",
+    "email": "Email",
+    "emailHelper": "Билеттер поштаға келеді (міндетті емес)",
+    "paymentMethod": "Төлем тәсілі",
+    "kaspi": "Kaspi Pay",
+    "epay": "Epay.kz",
+    "payButton": "Төлеу — {total}",
+    "processing": "Өңделуде...",
+    "validation": {
+      "nameRequired": "Атыңызды енгізіңіз",
+      "phoneFormat": "Формат: +77001234567",
+      "emailInvalid": "Email дұрыс емес"
+    },
+    "errors": {
+      "expired": "Брондау уақыты бітті. Орындарды қайта таңдаңыз.",
+      "alreadyProcessed": "Бұл бронь өңделген.",
+      "wrongSession": "Бұл бронь басқа сессияға тиесілі.",
+      "noHeldSeats": "Бұл брондау үшін ұсталған орын жоқ",
+      "generic": "Төлемді аяқтау мүмкін болмады. Қайтадан көріңіз."
+    },
+    "expiredPage": {
+      "title": "Брондау уақыты бітті",
+      "description": "Орындарды қайта таңдаңыз — олар енді сіз үшін ұсталмайды.",
+      "backToSeats": "Орындарды таңдау"
+    },
+    "wrongSessionPage": {
+      "title": "Бұл бронь сіздікі емес",
+      "description": "Сілтемені басқа құрылғыдан немесе cookies тазалаудан кейін ашқан сияқтысыз.",
+      "backHome": "Басты бетке"
+    },
+    "success": {
+      "title": "Билеттер сатып алынды",
+      "subtitle": "QR-кодтарды сақтаңыз немесе көрсетілімге олармен келіңіз.",
+      "downloadPdf": "PDF жүктеу",
+      "sendEmail": "Email-ге жіберу",
+      "ticketCode": "Билет коды",
+      "backHome": "Басты бетке",
+      "rowSeat": "Қатар {row}, орын {seat}"
+    }
+  },
+  "notFound": {
+    "event": {
+      "title": "Спектакль табылмады",
+      "description": "Ол алынып тасталған немесе сілтеме ескірген болуы мүмкін",
+      "backHome": "Афишаға оралу"
+    },
+    "show": {
+      "title": "Көрсетілім табылмады",
+      "description": "Сатылым жабылған немесе көрсетілім тоқтатылған"
+    },
+    "booking": {
+      "title": "Бронь табылмады",
+      "description": "Сілтеме ескірген немесе бронь алынып тасталған болуы мүмкін",
+      "backHome": "Афишаға оралу"
+    }
+  },
+  "footer": {
+    "shortName": "Ұйғыр театры",
+    "since": "Алматы · 1934 жылдан бері",
+    "brand": {
+      "name": "Ұйғыр театры",
+      "tagline": "Музыкалық комедия · Алматы"
+    },
+    "contactsLabel": "Байланыс",
+    "phoneLabel": "Телефон",
+    "address": "Абылай хан даңғ., 58, Алматы",
+    "email": "uyghurtheatrekz@gmail.com",
+    "contacts": {
+      "boxOffice": "Касса",
+      "phone": "Телефон",
+      "email": "Email",
+      "address": "Мекенжай",
+      "addressValue": "Алматы қ., Наурызбай батыр көш., 83"
+    },
+    "followUs": "Әлеуметтік желілерде",
+    "officialName": "Қ. Қожамьяров атындағы республикалық мемлекеттік академиялық ұйғыр музыкалық комедия театры",
+    "rights": "Барлық құқықтар қорғалған",
+    "contact": "Алматы, Қазақстан",
+    "copyright": "© 2026 Республикалық ұйғыр музыкалық комедия мемлекеттік театры"
+  },
+  "cart": {
+    "title": "Себет",
+    "activeBooking": "Белсенді броньдау",
+    "continuePayment": "Төлемді жалғастыру",
+    "myTickets": "Менің билеттерім",
+    "upcoming": "Алдағы",
+    "past": "Өткен",
+    "showPast": "Өткендерді көрсету ({count})",
+    "hidePast": "Өткендерді жасыру",
+    "emptyTitle": "Сіз әлі ештеңе сатып алған жоқсыз",
+    "emptyBody": "Афишаны ашыңыз — қызықты қойылымдар көп.",
+    "toAfisha": "Афишаға өту",
+    "seats": "Орындар",
+    "total": "Барлығы",
+    "rowSeat": "Қатар {row}, орын {seat}"
+  }
+}

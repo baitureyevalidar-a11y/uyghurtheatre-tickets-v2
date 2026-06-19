@@ -1,0 +1,348 @@
+// schema.prisma
+//
+// Database schema for the Uyghur Musical Comedy Theater ticketing system.
+//
+// Design notes:
+//   - Multi-language fields use separate columns (titleKz/titleRu/titleUg)
+//     for type safety and simple SQL filters.
+//   - ShowSeat is NOT materialized: row exists only when seat is not AVAILABLE.
+//   - Tickets are denormalized (zoneId/row/seat/tier/price snapshotted).
+//   - Bookings can be made by guests (userId optional).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// USERS / AUTH
+// ============================================================
+
+enum UserRole {
+  CUSTOMER     // optional account for purchase history
+  CASHIER      // can scan tickets, process at-door sales
+  ADMIN        // manage events, shows, prices, view bookings
+  SUPER_ADMIN  // manage admins, system settings
+}
+
+enum Locale {
+  kz
+  ru
+  ug
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String?  @unique
+  phone           String?  @unique
+  name            String?
+  role            UserRole @default(CUSTOMER)
+  passwordHash    String?  // null for OAuth/phone-only customers
+  preferredLocale Locale   @default(ru)
+  emailVerified   DateTime?
+
+  bookings Booking[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([role])
+}
+
+// ============================================================
+// CATALOG: EVENTS & SHOWS
+// ============================================================
+
+model Event {
+  id   String @id @default(cuid())
+  slug String @unique           // for URLs: /events/kozy-bayan
+
+  // Multi-language content
+  titleKz       String
+  titleRu       String
+  titleUg       String
+  descriptionKz String?  @db.Text
+  descriptionRu String?  @db.Text
+  descriptionUg String?  @db.Text
+
+  // Metadata
+  durationMin Int?               // performance length in minutes
+  ageRating   String?             // "6+", "12+", "16+"
+  genre       String?             // "drama", "comedy", "musical"
+  cast        String[] @default([])  // featured performers, shown in detail metadata grid
+  director    String?                // staging director / постановщик
+
+  // Media
+  posterUrl   String?              // vertical poster (event card)
+  coverUrl    String?              // wide banner (event detail header)
+  galleryUrls String[] @default([])
+
+  // Display
+  isActive Boolean @default(true)  // hides from public catalog when false
+
+  shows Show[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+enum ShowStatus {
+  DRAFT         // not visible to public
+  SCHEDULED     // visible but sales not open
+  ON_SALE       // tickets available for purchase
+  SOLD_OUT      // all seats booked
+  CANCELLED     // show cancelled, refunds in progress
+  FINISHED      // show has happened
+}
+
+model Show {
+  id      String @id @default(cuid())
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  startsAt DateTime  // when the show begins
+  endsAt   DateTime? // optional, computed from event.durationMin if null
+
+  // Sales window
+  salesOpenAt  DateTime?  // null = open immediately when ON_SALE
+  salesCloseAt DateTime?  // null = closes at startsAt
+
+  status ShowStatus @default(DRAFT)
+
+  // Per-show pricing (admin can override these in admin panel).
+  // These map to the TierIds in hall-config.ts.
+  pricePremium  Int  // tenge, e.g. 4000
+  priceStandard Int  // e.g. 3500
+  priceEconomy  Int  // e.g. 3000
+  priceBalcony  Int  // e.g. 2500
+
+  showSeats ShowSeat[]
+  bookings  Booking[]
+  tickets   Ticket[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([eventId, startsAt])
+  @@index([status, startsAt])
+}
+
+// ============================================================
+// SEAT STATE: ShowSeat
+// ============================================================
+// One row per (show, zone, row, seat) — but ONLY when status != AVAILABLE.
+// Absence of a row = seat is available for that show (using hall-config defaults).
+// This keeps the table small and migrations trivial when hall-config changes.
+
+enum SeatStatus {
+  HELD       // temporarily locked during checkout (with expiry)
+  BOOKED     // paid, ticket issued
+  BLOCKED    // admin closed for this show (broken seat, tech reasons)
+  VIP_HOLD   // reserved for press/VIPs, manually released
+}
+
+model ShowSeat {
+  id     String @id @default(cuid())
+  showId String
+  show   Show   @relation(fields: [showId], references: [id], onDelete: Cascade)
+
+  // Identifies the seat in the hall (matches hall-config.ts)
+  zoneId String  // "parter", "amphitheater", "balcony", "tier_2_left", etc.
+  row    Int
+  seat   Int
+
+  status SeatStatus
+
+  // For HELD seats
+  holdExpiresAt DateTime?
+  holdSessionId String?    // session ID or anonymous cart token
+
+  // For BOOKED seats
+  ticketId String? @unique
+  ticket   Ticket? @relation(fields: [ticketId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([showId, zoneId, row, seat])
+  @@index([showId, status])
+  @@index([holdExpiresAt])  // for cleanup job
+}
+
+// ============================================================
+// PURCHASE: BOOKING / TICKET / PAYMENT
+// ============================================================
+
+enum BookingStatus {
+  PENDING               // seats held, waiting for payment
+  PAID                  // payment success, tickets issued
+  EXPIRED               // user didn't pay in time, seats released
+  CANCELLED             // user-cancelled before payment
+  REFUNDED              // full refund processed
+  PARTIALLY_REFUNDED    // some tickets refunded
+}
+
+enum BookingSource {
+  WEB                   // self-service on uyghurtheatre tickets site
+  KASSA                 // at-theater box office (via cashier)
+  PARTNER               // external referral (uyghurtheatre.kz, etc.)
+}
+
+model Booking {
+  id String @id @default(cuid())
+
+  // Guest checkout: userId optional, contact required
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+
+  showId String
+  show   Show   @relation(fields: [showId], references: [id])
+
+  // Customer contact (always required, even with userId)
+  customerName  String
+  customerEmail String?
+  customerPhone String
+
+  // Pricing snapshot
+  subtotal Int             // sum of ticket prices
+  discount Int @default(0)
+  total    Int             // subtotal - discount
+  currency String @default("KZT")
+
+  status BookingStatus @default(PENDING)
+
+  // Cart timeout
+  expiresAt DateTime?     // when PENDING auto-converts to EXPIRED
+
+  // Metadata
+  locale Locale         @default(ru)
+  source BookingSource  @default(WEB)
+  notes  String?        @db.Text
+
+  tickets  Ticket[]
+  payments Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([showId, status])
+  @@index([userId])
+  @@index([customerPhone])
+  @@index([expiresAt])
+}
+
+enum TicketStatus {
+  VALID
+  USED        // scanned at entrance
+  CANCELLED
+  REFUNDED
+}
+
+model Ticket {
+  id        String  @id @default(cuid())
+  bookingId String
+  booking   Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  // Direct denormalized link to the show (== booking.showId), so ticket-by-show
+  // queries skip the nested booking traversal and `_count.tickets` works on Show.
+  // Restrict: a show with issued tickets cannot be hard-deleted.
+  showId String
+  show   Show   @relation(fields: [showId], references: [id], onDelete: Restrict)
+
+  // Seat snapshot (denormalized — survives hall-config changes)
+  zoneId   String  // "parter", "amphitheater", etc.
+  zoneName String  // localized name at time of purchase
+  row      Int
+  seat     Int
+  tier     String  // "premium", "standard", "economy", "balcony"
+  price    Int     // tenge, snapshot at purchase
+
+  // Identity
+  ticketCode String @unique  // human-readable: "UYG-2026-001234"
+  qrPayload  String @unique  // signed JWT for scanner
+
+  // Usage
+  status      TicketStatus @default(VALID)
+  usedAt      DateTime?
+  scannedById String?      // cashier user.id who scanned
+
+  // Back-ref from ShowSeat
+  showSeat ShowSeat?
+
+  createdAt DateTime @default(now())
+
+  @@unique([bookingId, zoneId, row, seat])
+  @@index([showId])
+  @@index([status])
+  @@index([ticketCode])
+}
+
+enum PaymentMethod {
+  KASPI_PAY     // primary for Kazakhstan
+  EPAY_KZ       // secondary card processor
+  CARD          // generic Visa/Mastercard fallback
+  CASH          // at-kassa
+  COMPED        // free comp tickets
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+model Payment {
+  id        String  @id @default(cuid())
+  bookingId String
+  booking   Booking @relation(fields: [bookingId], references: [id])
+
+  amount   Int
+  currency String @default("KZT")
+
+  method PaymentMethod
+  status PaymentStatus @default(PENDING)
+
+  // Provider data
+  providerTransactionId String?
+  providerResponse      Json?
+
+  // For refunds
+  refundedAmount Int?
+  refundedAt     DateTime?
+  refundReason   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([bookingId])
+  @@index([status])
+  @@index([providerTransactionId])
+}
+
+// ============================================================
+// AUDIT LOG (admin action history)
+// ============================================================
+
+model AuditLog {
+  id         String  @id @default(cuid())
+  userId     String?
+  action     String  // "EVENT_CREATED", "PRICE_UPDATED", "TICKET_REFUNDED"
+  entityType String  // "Event", "Show", "Ticket"
+  entityId   String
+  details    Json?
+  ipAddress  String?
+
+  createdAt DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@index([createdAt])
+}

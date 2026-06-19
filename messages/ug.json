@@ -1,0 +1,176 @@
+{
+  "_translatorNote": "TODO: UG translations are placeholder — review with native speaker before production.",
+  "common": {
+    "welcome": "Уйғур музыкилиқ комедийә театри",
+    "tagline": "Билетлар онлайн",
+    "siteName": "Уйғур театри",
+    "priceFrom": "{price}-дин",
+    "buy": "Сетивелиш"
+  },
+  "header": {
+    "logoAlt": "Уйғур театри",
+    "buyTicket": "Билет сетивелиш",
+    "cart": "Севәт"
+  },
+  "home": {
+    "heroEyebrow": "Пәсил премьераси",
+    "premiereBadge": "Премьера",
+    "heroBuy": "Билет сетивелиш",
+    "heroFrom": "Билетлар",
+    "dateLabel": "Күни",
+    "durationLabel": "Давамийлиғи",
+    "durationValue": "{hours} саат",
+    "withIntermission": "антракт билән",
+    "scarcity": "{count} орун қалди — залниң 30%-дин ази",
+    "afishaEyebrow": "Афиша",
+    "afishaTitle": "Бу айдики",
+    "afishaTitleAccent": "афиша",
+    "heroComingSoon": "Йеқинда йеңи спектакллар"
+  },
+  "catalog": {
+    "empty": "Йеқинда йеңи спектакллар елан қилиниду"
+  },
+  "event": {
+    "upcomingShows": "Йеқиндики көрсәтмилар",
+    "noUpcomingShows": "Йеқинда көрсәтмә елан қилинмиди",
+    "durationMin": "{count} мин",
+    "detail": {
+      "cast": "Йорлада",
+      "duration": "Узунлуғи",
+      "director": "Режиссёр",
+      "producingTheater": "Сахналиқ театр",
+      "producingTheaterValue": "Уйғур театры",
+      "ageRating": "Яш чәклимиси",
+      "eyebrow": "АФИША",
+      "schedule": "Намишниң тәртиви",
+      "about": "Тәдбир тоғрисида",
+      "buyFrom": "Билет елиш — {price} дин",
+      "noShows": "Һазирчә намиш йоқ",
+      "comingSoon": "Пат арида сетилишта",
+      "hoursShort": "саат",
+      "minutesShort": "мин",
+      "empty": "—"
+    }
+  },
+  "seats": {
+    "back": "← Спектакльга қайтиш",
+    "stage": "САХНӘ",
+    "selectNone": "Сизмидин орун таллаң",
+    "countSeats": "{count, plural, one {# орун} other {# орун}}",
+    "continue": "Давамлаштуруш",
+    "creatingBooking": "Бронь чүшүрүлмәктә...",
+    "errorSeatTaken": "Бу орунни йеңила тутувелишти. Бәтни йеңиләң.",
+    "errorMaxSeats": "Бир қетимда — 10 орунғичә",
+    "errorShowUnavailable": "Көрсәтмә мәвҗут әмәс",
+    "errorInvalidSeat": "Орун хата",
+    "backToHall": "Залға қайтиш",
+    "rowLabel": "Қатар",
+    "seatLabel": "Орун",
+    "continueWithTotal": "Давамлаштуруш — {total}"
+  },
+  "checkout": {
+    "title": "Тапсуруқни рәсмийләштүрүш",
+    "yourOrder": "Сизниң тапсуруғиңиз",
+    "total": "Җәми",
+    "holdTimer": "Орунлар йәнә {time} тутулиду",
+    "holdExpired": "Брондаш вақти өтти",
+    "name": "Исим",
+    "namePlaceholder": "Иван Иванов",
+    "phone": "Телефон",
+    "phoneHelper": "Мисал үчүн, +77001234567",
+    "email": "Email",
+    "emailHelper": "Билетлар почтиға келиду (мәҗбурий әмәс)",
+    "paymentMethod": "Төләм усули",
+    "kaspi": "Kaspi Pay",
+    "epay": "Epay.kz",
+    "payButton": "Төләш — {total}",
+    "processing": "Иҗра қилинмәктә...",
+    "validation": {
+      "nameRequired": "Исмиңизни киргүзүң",
+      "phoneFormat": "Формат: +77001234567",
+      "emailInvalid": "Email хата"
+    },
+    "errors": {
+      "expired": "Брондаш вақти өтти. Орунларни қайта таллаң.",
+      "alreadyProcessed": "Бу бронь аллиқачан тамамланған.",
+      "wrongSession": "Бу бронь башқа сессияға аит.",
+      "noHeldSeats": "Бу бронь үчүн тутулған орун йоқ",
+      "generic": "Төләмни тамамлаш мумкин болмиди. Йәнә синап беқиң."
+    },
+    "expiredPage": {
+      "title": "Брондаш вақти өтти",
+      "description": "Орунларни қайта таллаң — улар сиз үчүн әнди тутулмайду.",
+      "backToSeats": "Орун таллашқа"
+    },
+    "wrongSessionPage": {
+      "title": "Бу бронь сизниңки әмәс",
+      "description": "Силиқни башқа қурулмидин яки cookies тазилашидин кейин ачқан охшайсиз.",
+      "backHome": "Башқа бәткә"
+    },
+    "success": {
+      "title": "Билетлар сетивелинди",
+      "subtitle": "QR-кодларни сақлаң яки көрсәтмигә улар билән келиң.",
+      "downloadPdf": "PDF чүшүрүш",
+      "sendEmail": "Email-ға әвәтиш",
+      "ticketCode": "Билет коди",
+      "backHome": "Башқа бәткә",
+      "rowSeat": "Қатар {row}, орун {seat}"
+    }
+  },
+  "notFound": {
+    "event": {
+      "title": "Спектакль тепилмиди",
+      "description": "Бекар қилинған яки силиға ескирип қалған болуши мумкин",
+      "backHome": "Афишаға қайтиш"
+    },
+    "show": {
+      "title": "Көрсәтмә тепилмиди",
+      "description": "Сатилиш тохтитилған яки көрсәтмә бекар қилинған"
+    },
+    "booking": {
+      "title": "Бронь тепилмиди",
+      "description": "Силиқ ескирип қалған яки бронь бекар қилинған болуши мумкин",
+      "backHome": "Афишаға қайтиш"
+    }
+  },
+  "footer": {
+    "shortName": "Уйғур театри",
+    "since": "Алмута · 1934-жилдин буян",
+    "brand": {
+      "name": "Уйғур театри",
+      "tagline": "Музыкилиқ комедия · Алмута"
+    },
+    "contactsLabel": "Алақә",
+    "phoneLabel": "Телефон",
+    "address": "Абылайхан йоли, 58, Алмута",
+    "email": "uyghurtheatrekz@gmail.com",
+    "contacts": {
+      "boxOffice": "Касса",
+      "phone": "Телефон",
+      "email": "Email",
+      "address": "Адрес",
+      "addressValue": "Алмута ш., Наурызбай батыр көч., 83"
+    },
+    "followUs": "Иҗтимаий торларда",
+    "officialName": "Қ. Қожамьяров намидики җумһурийәтлик дөләт академиялиқ уйғур музыкилиқ комедийә театри",
+    "rights": "Барлиқ һоқуқлар қоғдалған",
+    "contact": "Алмута, Қазақистан",
+    "copyright": "© 2026 Дөләт җумһурийитидики Уйғур музыкилиқ комедийә театри"
+  },
+  "cart": {
+    "title": "Севәт",
+    "activeBooking": "Актив бронь",
+    "continuePayment": "Төләмни давамлаштуруш",
+    "myTickets": "Мениң билетлирим",
+    "upcoming": "Кәлгүси",
+    "past": "Өткән",
+    "showPast": "Өткәнләрни көрситиш ({count})",
+    "hidePast": "Өткәнләрни йошуруш",
+    "emptyTitle": "Сиз техи һеч нәрсә сетивалмидиңиз",
+    "emptyBody": "Афишини ечиң — қизиқарлиқ спектакллар көп.",
+    "toAfisha": "Афишиға өтүш",
+    "seats": "Орунлар",
+    "total": "Җәми",
+    "rowSeat": "Қатар {row}, орун {seat}"
+  }
+}
