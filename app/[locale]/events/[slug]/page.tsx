@@ -149,12 +149,12 @@ export default async function EventDetailPage({
       <div className="mx-auto max-w-5xl px-4 pb-20">
         {/* ── Section 1: Title + metadata grid ── */}
         <section className="py-12">
-          <h1 className="font-serif text-5xl italic leading-tight text-ink md:text-6xl">
+          <h1 className="font-serif text-3xl italic leading-tight text-ink md:text-6xl">
             {title}
           </h1>
           <div className="rule mt-6" />
 
-          <dl className="mt-10 grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-10 grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3 md:gap-x-12 md:gap-y-8">
             <MetaCell label={t("cast")} value={castValue} />
             <MetaCell label={t("duration")} value={durationValue} />
             <MetaCell label={t("director")} value={directorValue} />
@@ -177,7 +177,7 @@ export default async function EventDetailPage({
           <h2 className="mt-1 mb-6 font-serif text-3xl italic text-ink">
             {t("schedule")}
           </h2>
-          <div className="rounded-xl border border-line bg-paper p-6 shadow-card">
+          <div className="rounded-xl border border-line bg-paper p-4 shadow-card md:p-6">
             <SessionsList groups={groups} emptyLabel={t("noShows")} />
           </div>
         </section>
@@ -204,7 +204,7 @@ function MetaCell({ label, value }: { label: string; value: string }) {
       <dt className="mb-1 text-xs uppercase tracking-wide text-ink-soft">
         {label}
       </dt>
-      <dd className="text-ink">{value}</dd>
+      <dd className="text-sm text-ink md:text-base">{value}</dd>
     </div>
   );
 }

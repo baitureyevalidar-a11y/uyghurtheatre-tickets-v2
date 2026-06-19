@@ -17,7 +17,7 @@ export async function EventGrid({ events, locale }: EventGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
       {events.map((event, i) => (
         <Reveal key={event.slug} index={i} className="h-full">
           <EventCard

@@ -70,13 +70,13 @@ export async function Footer() {
 
   return (
     <footer className="mt-auto bg-night text-paper">
-      <Container className="py-12 md:py-16">
+      <Container className="py-8 md:py-16">
         {/* Pomegranate motif divider — garnet→gold-soft for the dark bg */}
         <div className="mx-auto mb-10 h-0.5 w-[46px] rounded-sm bg-gradient-to-r from-garnet to-gold-soft" />
 
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 md:gap-10">
           {/* Col 1 — brand */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-4">
               <Image
                 src="/theater-icon.png"
@@ -151,7 +151,7 @@ export async function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-paper/20 text-paper transition-colors hover:border-gold hover:text-gold"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-paper/20 text-paper transition-colors hover:border-gold hover:text-gold md:h-10 md:w-10"
                 >
                   <Icon className="h-[18px] w-[18px]" />
                 </a>

@@ -103,17 +103,17 @@ export function SessionsList({
                   <div
                     key={r.id}
                     className={cn(
-                      "flex items-center gap-4 py-4",
+                      "flex flex-wrap items-center gap-2 py-4 md:gap-4",
                       i < g.rows.length - 1 && "border-b border-line",
                     )}
                   >
-                    <span className="rounded-md border border-line px-4 py-2 text-lg font-medium tabular-nums text-ink">
+                    <span className="rounded-md border border-line px-3 py-1 text-base font-medium tabular-nums text-ink md:px-4 md:py-2 md:text-lg">
                       {r.time}
                     </span>
                     <span className="flex-1" />
                     <Link
                       href={`/shows/${r.id}/seats`}
-                      className="inline-flex items-center justify-center rounded-md bg-garnet px-5 py-2 text-sm font-semibold text-white shadow-cta transition-colors hover:bg-garnet-dark"
+                      className="inline-flex items-center justify-center rounded-md bg-garnet px-3 py-1.5 text-sm font-semibold text-white shadow-cta transition-colors hover:bg-garnet-dark md:px-5 md:py-2"
                     >
                       {r.priceLabel}
                     </Link>

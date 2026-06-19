@@ -82,20 +82,20 @@ export async function EventCard({
         {index != null && (
           <span
             aria-hidden
-            className="pointer-events-none absolute right-2 top-0 font-serif text-[90px] font-bold leading-none text-gold-soft/20"
+            className="pointer-events-none absolute right-2 top-0 hidden font-serif text-[90px] font-bold leading-none text-gold-soft/20 md:block"
           >
             {index}
           </span>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-2 p-4">
+      <div className="flex flex-1 flex-col gap-2 p-3 md:p-4">
         {event.genre && (
           <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-garnet">
             {event.genre}
           </div>
         )}
-        <h3 className="line-clamp-2 font-serif text-xl font-bold leading-tight text-ink">
+        <h3 className="line-clamp-2 font-serif text-sm font-bold leading-tight text-ink md:text-xl">
           {title}
         </h3>
         <div className="text-sm text-ink-soft">
@@ -103,10 +103,10 @@ export async function EventCard({
         </div>
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-1">
-          <span className="rounded-full bg-paper-2 px-3 py-1 text-sm text-ink-soft">
+          <span className="rounded-full bg-paper-2 px-2 py-1 text-xs text-ink-soft md:px-3 md:text-sm">
             {t("priceFrom", { price: formatPrice(minPrice, locale) })}
           </span>
-          <span className="rounded-md border-2 border-garnet px-4 py-1.5 text-sm font-medium text-garnet transition-colors group-hover:bg-garnet group-hover:text-paper">
+          <span className="rounded-md border-2 border-garnet px-3 py-1 text-xs font-medium text-garnet transition-colors group-hover:bg-garnet group-hover:text-paper md:px-4 md:py-1.5 md:text-sm">
             {t("buy")}
           </span>
         </div>
