@@ -113,7 +113,7 @@ export function SessionsList({
                     <span className="flex-1" />
                     <Link
                       href={`/shows/${r.id}/seats`}
-                      className="inline-flex items-center justify-center rounded-md bg-garnet px-3 py-1.5 text-sm font-semibold text-white shadow-cta transition-colors hover:bg-garnet-dark md:px-5 md:py-2"
+                      className="inline-flex items-center justify-center rounded-md bg-garnet px-3 py-1.5 text-sm font-semibold text-white shadow-cta transition-colors hover:bg-garnet-dark md:px-5 md:py-2 md:text-base"
                     >
                       {r.priceLabel}
                     </Link>

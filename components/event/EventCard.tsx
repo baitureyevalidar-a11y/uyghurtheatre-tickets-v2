@@ -89,13 +89,13 @@ export async function EventCard({
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-2 p-3 md:p-4">
+      <div className="flex flex-1 flex-col gap-2 p-3 md:p-5">
         {event.genre && (
           <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-garnet">
             {event.genre}
           </div>
         )}
-        <h3 className="line-clamp-2 font-serif text-sm font-bold leading-tight text-ink md:text-xl">
+        <h3 className="line-clamp-2 font-serif text-sm font-bold leading-tight text-ink md:text-2xl">
           {title}
         </h3>
         <div className="text-sm text-ink-soft">
@@ -106,7 +106,7 @@ export async function EventCard({
           <span className="rounded-full bg-paper-2 px-2 py-1 text-xs text-ink-soft md:px-3 md:text-sm">
             {t("priceFrom", { price: formatPrice(minPrice, locale) })}
           </span>
-          <span className="rounded-md border-2 border-garnet px-3 py-1 text-xs font-medium text-garnet transition-colors group-hover:bg-garnet group-hover:text-paper md:px-4 md:py-1.5 md:text-sm">
+          <span className="rounded-md border-2 border-garnet px-3 py-1 text-xs font-medium text-garnet transition-colors group-hover:bg-garnet group-hover:text-paper md:px-5 md:py-1.5 md:text-sm">
             {t("buy")}
           </span>
         </div>
