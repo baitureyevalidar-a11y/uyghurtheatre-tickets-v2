@@ -74,76 +74,76 @@ export async function Footer() {
         {/* Pomegranate motif divider — garnet→gold-soft for the dark bg */}
         <div className="mx-auto mb-10 h-0.5 w-[46px] rounded-sm bg-gradient-to-r from-garnet to-gold-soft" />
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 md:gap-10">
+        <div className="grid grid-cols-3 gap-3 md:gap-10">
           {/* Col 1 — brand */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-4">
+          <div>
+            <div className="flex flex-col md:flex-row md:items-center md:gap-4">
               <Image
                 src="/theater-icon.png"
                 alt={t("brand.name")}
                 width={80}
                 height={80}
-                className="h-20 w-20 shrink-0 object-contain"
+                className="h-10 w-10 shrink-0 object-contain md:h-20 md:w-20"
               />
               <div>
-                <div className="font-serif text-3xl leading-tight text-paper">
+                <div className="font-serif text-sm leading-tight text-paper md:text-3xl">
                   {t("brand.name")}
                 </div>
-                <p className="mt-1 text-sm text-paper/60">{t("brand.tagline")}</p>
+                <p className="mt-1 text-[10px] text-paper/60 md:text-sm">{t("brand.tagline")}</p>
               </div>
             </div>
           </div>
 
           {/* Col 2 — contacts */}
           <div>
-            <div className="eyebrow mb-4 text-gold-soft">{t("contactsLabel")}</div>
-            <ul className="space-y-3">
+            <div className="eyebrow mb-2 text-gold-soft max-md:text-[10px] md:mb-4">{t("contactsLabel")}</div>
+            <ul className="space-y-2 md:space-y-3">
               <li>
-                <div className="text-[11px] uppercase tracking-wide text-paper/60">
+                <div className="text-[9px] uppercase tracking-wide text-paper/60 md:text-[11px]">
                   {t("contacts.boxOffice")}
                 </div>
                 <a
                   href={`tel:${BOX_OFFICE_TEL}`}
-                  className="text-paper transition-colors hover:underline"
+                  className="text-[11px] text-paper transition-colors hover:underline break-all md:text-base"
                 >
                   {BOX_OFFICE_DISPLAY}
                 </a>
               </li>
               <li>
-                <div className="text-[11px] uppercase tracking-wide text-paper/60">
+                <div className="text-[9px] uppercase tracking-wide text-paper/60 md:text-[11px]">
                   {t("contacts.phone")}
                 </div>
                 <a
                   href={`tel:${PHONE_TEL}`}
-                  className="text-paper transition-colors hover:underline"
+                  className="text-[11px] text-paper transition-colors hover:underline break-all md:text-base"
                 >
                   {PHONE_DISPLAY}
                 </a>
               </li>
               <li>
-                <div className="text-[11px] uppercase tracking-wide text-paper/60">
+                <div className="text-[9px] uppercase tracking-wide text-paper/60 md:text-[11px]">
                   {t("contacts.email")}
                 </div>
                 <a
                   href={`mailto:${t("email")}`}
-                  className="text-paper transition-colors hover:underline"
+                  className="text-[11px] text-paper transition-colors hover:underline break-all md:text-base"
                 >
                   {t("email")}
                 </a>
               </li>
               <li>
-                <div className="text-[11px] uppercase tracking-wide text-paper/60">
+                <div className="text-[9px] uppercase tracking-wide text-paper/60 md:text-[11px]">
                   {t("contacts.address")}
                 </div>
-                <span className="text-paper">{t("contacts.addressValue")}</span>
+                <span className="text-[11px] text-paper break-all md:text-base">{t("contacts.addressValue")}</span>
               </li>
             </ul>
           </div>
 
           {/* Col 3 — socials */}
           <div>
-            <div className="eyebrow mb-4 text-gold-soft">{t("followUs")}</div>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="eyebrow mb-2 text-gold-soft max-md:text-[10px] md:mb-4">{t("followUs")}</div>
+            <div className="flex flex-wrap gap-1.5 md:gap-2.5">
               {SOCIALS.map(({ label, href, Icon }) => (
                 <a
                   key={label}
@@ -151,9 +151,9 @@ export async function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-paper/20 text-paper transition-colors hover:border-gold hover:text-gold md:h-10 md:w-10"
+                  className="flex h-6 w-6 items-center justify-center rounded-full border border-paper/20 text-paper transition-colors hover:border-gold hover:text-gold md:h-10 md:w-10"
                 >
-                  <Icon className="h-[18px] w-[18px]" />
+                  <Icon className="h-3 w-3 md:h-[18px] md:w-[18px]" />
                 </a>
               ))}
             </div>
@@ -161,9 +161,9 @@ export async function Footer() {
         </div>
 
         {/* Bottom strip */}
-        <div className="mt-12 flex flex-col gap-2 border-t border-paper/15 pt-6 text-xs text-paper/70 md:flex-row md:items-center md:justify-between">
-          <span className="max-w-2xl">{t("officialName")}</span>
-          <span className="shrink-0">© 2026 · {t("rights")}</span>
+        <div className="mt-6 flex flex-col gap-1 border-t border-paper/15 pt-4 text-xs text-paper/70 md:mt-12 md:flex-row md:items-center md:justify-between md:gap-2 md:pt-6">
+          <span className="max-w-2xl text-[10px] leading-tight md:text-xs">{t("officialName")}</span>
+          <span className="shrink-0 text-[10px] leading-tight md:text-xs">© 2026 · {t("rights")}</span>
         </div>
       </Container>
     </footer>
