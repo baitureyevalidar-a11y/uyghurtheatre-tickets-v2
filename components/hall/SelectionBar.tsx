@@ -18,6 +18,8 @@ type SelectionBarProps = {
   isPending: boolean;
   error: string | null;
   locale: AppLocale;
+  /** Prompt shown in the empty state — varies by view (sector vs seat). */
+  emptyPrompt?: string;
 };
 
 export function SelectionBar({
@@ -28,6 +30,7 @@ export function SelectionBar({
   isPending,
   error,
   locale,
+  emptyPrompt,
 }: SelectionBarProps) {
   const t = useTranslations("seats");
   const hasSelection = selectedCount > 0;
@@ -37,7 +40,7 @@ export function SelectionBar({
     return (
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper-2/90 backdrop-blur">
         <Container className="py-4 text-center text-sm text-ink-soft">
-          {t("selectNone")}
+          {emptyPrompt ?? t("selectNone")}
         </Container>
       </div>
     );

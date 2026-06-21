@@ -56,6 +56,8 @@
     "back": "← Оқиғаға қайту",
     "stage": "САХНА",
     "selectNone": "Сызбадан орын таңдаңыз",
+    "chooseZonePrompt": "Сызбадан секторды таңдаңыз",
+    "city": "Алматы",
     "countSeats": "{count, plural, one {# орын} other {# орын}}",
     "continue": "Жалғастыру",
     "creatingBooking": "Брондау жасалуда...",

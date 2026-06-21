@@ -544,6 +544,23 @@
   stroke: var(--garnet);
   stroke-width: 2;
 }
+/* Keyboard focus — same affordance as hover. */
+.zone-shape:focus-visible {
+  outline: none;
+  transform: scale(1.02);
+}
+.zone-shape:focus-visible .zone-bg {
+  stroke: var(--garnet);
+  stroke-width: 2;
+}
+/* Press feel on click/drill-in — stronger garnet outline. */
+.zone-shape:active {
+  transform: scale(1.05);
+}
+.zone-shape:active .zone-bg {
+  stroke: var(--garnet);
+  stroke-width: 3;
+}
 
 /* ── Seat-selection redesign: individual seats (zone detail) ── */
 .zseat {

@@ -155,6 +155,9 @@ export function SeatSelectionView({
         isPending={isPending}
         error={error}
         locale={locale}
+        emptyPrompt={
+          view.mode === "overview" ? t("chooseZonePrompt") : t("selectNone")
+        }
       />
     </>
   );

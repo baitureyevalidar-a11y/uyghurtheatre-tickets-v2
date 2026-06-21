@@ -94,7 +94,7 @@ export default async function SeatsPage({
               {title}
             </h1>
             <div className="mt-0.5 text-sm text-paper/80">
-              {formatShowDate(show.startsAt, appLocale)}
+              {formatShowDate(show.startsAt, appLocale)} · {t("city")}
             </div>
           </div>
           <Link

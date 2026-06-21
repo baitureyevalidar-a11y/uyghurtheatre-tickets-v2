@@ -55,6 +55,8 @@
     "back": "← Назад к событию",
     "stage": "СЦЕНА",
     "selectNone": "Выберите место на схеме",
+    "chooseZonePrompt": "Выберите сектор на схеме",
+    "city": "Алматы",
     "countSeats": "{count, plural, one {# место} few {# места} other {# мест}}",
     "continue": "Продолжить",
     "creatingBooking": "Создаём бронь...",
